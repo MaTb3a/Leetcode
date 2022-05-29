@@ -1,27 +1,24 @@
 class Solution {
 public:
     int maxProduct(vector<string>& words) {
-        vector<vector<int>>v;
-        for(auto t : words){
-            vector<int>tmp(26);
-            for(auto ch : t)tmp[ch-'a']++;
-            v.push_back(tmp);
-        }
+        int n= words.size();
         int ans=0;
-        for(int i=0;i<v.size();i++){
-            for(int j=i+1;j<v.size();j++){
-                bool ok =1;
-                int a=0,b=0;
-                for(int k=0;k<26;k++){
-                    if(v[i][k] && v[j][k]){ok=0;break;}
-                    a+=v[i][k];
-                    b+=v[j][k];
-                }
-                if(ok)ans=max(ans,a*b);
+        for(int i=0;i<n;i++){
+            vector<int>tmp(26);
+            for(auto ch : words[i])tmp[ch-'a']++;
+            for(int j=i+1;j<n;j++){
+                bool ok=1;
+                for(auto t : words[j])
+                    if(tmp[t-'a']){ok=0;break;}
                 
+                 if(ok)ans=max(ans,(int)(words[i].size()*words[j].size()));
+                   
             }
         }
         return ans;
-        
+
     }
+       
+        
+            
 };
