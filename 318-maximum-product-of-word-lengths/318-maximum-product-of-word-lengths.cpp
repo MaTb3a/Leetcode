@@ -2,12 +2,12 @@ class Solution {
 public:
     int maxProduct(vector<string>& words) {
         int n= words.size();
-        vector<int>mask;
+        int mask[n];
         for(int i=0;i<n;i++){
             int cur=0;
             for(auto t : words[i])
                 cur |=(1<<(t-'a'));
-            mask.push_back(cur);
+            mask[i]=cur;
         }
         int ans=0;
         for(int i=0;i<n;i++){
