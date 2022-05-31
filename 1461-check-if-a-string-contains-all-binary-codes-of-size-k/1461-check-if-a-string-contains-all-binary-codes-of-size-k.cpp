@@ -3,20 +3,13 @@ public:
    
     bool hasAllCodes(string s, int k) {
         if(k>s.size())return 0;
-        unordered_set<int>st;
-        int x=0;
-        for(int j=0;j<k;j++){
-            x<<=1;
-            x|=(s[j]-'0');
+        unordered_set<string>st;
+        
+        for(int i=0;i<=s.size()-k;i++){
+            st.insert(s.substr(i,k));
         }
-        st.insert(x);
-        for(int j=k;j<s.size();j++){
-            x&=~(1<<(k-1));
-             x<<=1;
-            x|=(s[j]-'0');
-            st.insert(x);
-        }
-        return st.size()==(1<<k);
+        
+        return st.size() == (1<<k);
     }
   
 };
