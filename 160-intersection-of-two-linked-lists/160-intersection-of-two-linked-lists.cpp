@@ -8,17 +8,18 @@
  */
 class Solution {
 public:
-    
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-        ListNode *p1 = headA;
-        ListNode *p2 = headB;
-        while(p1!=p2){
-            p1=p1->next;
-            p2=p2->next;
-            if(p1==p2)break;
-            if(!p1)p1=headB;
-            if(!p2)p2=headA;
+       set<ListNode*>sedra;
+        while(headA){
+            sedra.insert(headA);
+            headA=headA->next;
         }
-        return p1;
+        while(headB){
+            if(sedra.find(headB) != sedra.end()){
+                return headB;
+            }
+            headB=headB->next;
+        }
+        return headB;
     }
 };
