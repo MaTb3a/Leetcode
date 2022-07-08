@@ -1,10 +1,10 @@
 class Solution {
 public:
-    int dp[101][101][201];
+    int dp[101][101];
     bool solve(int i,int j,int k,string &s1, string &s2, string &s3){
         if(i+j==s3.size())
             return 1;
-        int &ret=dp[i][j][k];
+        int &ret=dp[i][j];
         if(~ret)return ret;
         ret=0;
         if(s1[i]==s3[k])
