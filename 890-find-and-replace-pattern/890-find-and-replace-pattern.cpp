@@ -11,9 +11,8 @@ public:
             else if(mp[a[i]]!=b[i])
                 return 0;
         }
-        string c="";
-        for(auto t:a)c+=mp[t];
-        return b==c;
+      
+        return 1;
     }
     vector<string> findAndReplacePattern(vector<string>& words, string pattern) {
         vector<string>ans;
