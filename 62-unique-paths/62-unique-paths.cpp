@@ -1,13 +1,18 @@
 class Solution {
 public:
+    long long dp[101][101];
+    long long solve(int i,int j){
+        if(i==1 && j==1)return 1;
+        if(i<= 0||j<=0)return 0;
+        long long &ret=dp[i][j];
+        if(~ret)return ret;
+        ret=0;
+        ret+=solve(i-1,j);
+        ret+=solve(i,j-1);
+        return ret;
+    }
     int uniquePaths(int m, int n) {
-        // We have to calculate m+n-2 C n-1 here
-        // which will be (m+n-2)! / (n-1)! (m-1)!
-        long long path = 1;
-        for (int i = n; i < (m + n - 1); i++) {
-            path *= i;
-            path /= (i - n + 1);
-        }
-        return path;
+        memset(dp,-1,sizeof dp);
+        return solve(m,n);
     }
 };
