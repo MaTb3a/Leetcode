@@ -12,32 +12,16 @@
 class Solution {
 public:
     
-    map<int,int>mp;
-    int cnt=0;
-    bool ok(){
-        int ctr=0;
-        for(auto t : mp){
-            if(t.second&1)ctr++;
-        }
-        return ctr<2;
-    }
-    void dfs(TreeNode* root){
-        if(!root)return ;
-        if(!root->left and !root->right){
-                mp[root->val]++;
-                if(ok())cnt++;
-                mp[root->val]--;
-                return ;
-        }
-        mp[root->val]++;
-        dfs(root->left);
-        dfs(root->right);
-        mp[root->val]--;
-
+    
+    int dfs(TreeNode* root,int vis){
+        if(!root)return 0;
+        vis ^= (1 << root->val);
+        if(!root->left and !root->right)
+               return __builtin_popcount(vis) < 2;
         
+        return dfs(root->left,vis)+dfs(root->right,vis);
     }
     int pseudoPalindromicPaths (TreeNode* root) {
-        dfs(root);
-        return cnt;
+        return dfs(root,0);
     }
 };
