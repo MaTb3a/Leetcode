@@ -15,25 +15,25 @@
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
 
-<pre style="position: relative;"><strong>Input:</strong> piles = [2,4,1,2,7,8]
+<pre><strong>Input:</strong> piles = [2,4,1,2,7,8]
 <strong>Output:</strong> 9
 <strong>Explanation: </strong>Choose the triplet (2, 7, 8), Alice Pick the pile with 8 coins, you the pile with <strong>7</strong> coins and Bob the last one.
 Choose the triplet (1, 2, 4), Alice Pick the pile with 4 coins, you the pile with <strong>2</strong> coins and Bob the last one.
 The maximum number of coins which you can have are: 7 + 2 = 9.
 On the other hand if we choose this arrangement (1, <strong>2</strong>, 8), (2, <strong>4</strong>, 7) you only get 2 + 4 = 6 coins which is not optimal.
-<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+</pre>
 
 <p><strong class="example">Example 2:</strong></p>
 
-<pre style="position: relative;"><strong>Input:</strong> piles = [2,4,5]
+<pre><strong>Input:</strong> piles = [2,4,5]
 <strong>Output:</strong> 4
-<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+</pre>
 
 <p><strong class="example">Example 3:</strong></p>
 
-<pre style="position: relative;"><strong>Input:</strong> piles = [9,8,7,6,5,1,2,3,4]
+<pre><strong>Input:</strong> piles = [9,8,7,6,5,1,2,3,4]
 <strong>Output:</strong> 18
-<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+</pre>
 
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
