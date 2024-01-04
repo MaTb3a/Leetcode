@@ -1,15 +1,13 @@
 class Solution {
 public:
+    int vis[1000001];
     int minOperations(vector<int>& nums) {
-     
         
-        unordered_map<int,int>mp;
-        for(auto t: nums)mp[t]++;
+        for(auto t: nums)vis[t]++;
         int cnt=0;
-        for(auto t : mp){
-            if(t.second==1)return -1;
-            cnt+=ceil(t.second/3.0);
-        }
+        for(int i = 1;i<1000001;i++)
+            if(vis[i]==1)return -1;
+            else cnt+=ceil(vis[i]/3.0);
         return cnt;
     }
 };
