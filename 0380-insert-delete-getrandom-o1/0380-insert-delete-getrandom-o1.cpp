@@ -9,7 +9,6 @@ public:
     
     bool insert(int val) {
         if(mp.find(val)!=mp.end())return false;
-        
         v.push_back(val);
         mp[val]=v.size()-1;
         return true;
@@ -17,9 +16,8 @@ public:
     
     bool remove(int val) {
         if(mp.find(val)==mp.end())return false;
-        int tmp = mp[val];
-        mp[v.back()] = tmp;
-        swap(v[v.size()-1],v[tmp]);
+        mp[v.back()] =  mp[val];
+        swap(v[v.size()-1],v[ mp[val]]);
         v.pop_back();
         mp.erase(val);
         return true;
