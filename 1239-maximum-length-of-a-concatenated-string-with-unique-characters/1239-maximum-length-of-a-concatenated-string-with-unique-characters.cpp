@@ -1,9 +1,9 @@
 class Solution {
 public:
-    bool check(string &s,vector<bool> &vis){
+    bool check(string &s,int &mask){
         for(int i = 0 ;i < s.size();i++){
-            if(vis[s[i]-'a'])return false;
-            vis[s[i]-'a']=1;
+            if(mask & (1<<(s[i]-'a')) )return false;
+            mask|=(1<<(s[i]-'a'));
         }
         return true;
     }
@@ -13,13 +13,13 @@ public:
         
         for(int i = 0 ; i < (1<<n); i++){
             bool ok = true;
-            vector<bool>vis(26);
+            int mask = 0;
             for(int j = 0 ; j < n ;j++){
                 if(i & (1<<j)){
-                    if(!check(arr[j],vis))ok=false;
+                    if(!check(arr[j],mask))ok=false;
                 }
             }
-            if(ok)ans=max(ans,(int)count(vis.begin(),vis.end(),1));
+            if(ok)ans=max(ans,(int)__builtin_popcount(mask));
         }
         return ans;
         
