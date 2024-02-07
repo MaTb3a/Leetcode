@@ -1,14 +1,11 @@
 class Solution {
 public:
     
-    
     string frequencySort(string s) {
-        unordered_map<char,int>vis;
+        int vis[256]={0};
         for(auto t : s)vis[t]++;
-        sort(s.begin(),s.end(),[&](char a ,char b){
-            if (vis[a] > vis[b])return true;
-            if(vis[a] == vis[b])return a < b;
-            return false;
+        sort(s.begin(),s.end(),[&](char a, char b){
+            return vis[a]>vis[b] || (vis[a]== vis[b] && a > b);
         });
         return s;
         
