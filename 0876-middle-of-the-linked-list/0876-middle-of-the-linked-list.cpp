@@ -10,17 +10,14 @@
  */
 class Solution {
 public:
-    int count(ListNode* head){
-        int cnt = 0;
-        while(head){
-            cnt++;
-            head = head->next;
-        }
-        return cnt;
-    }
+   
     ListNode* middleNode(ListNode* head) {
-        int n = (count(head))/2;
-        while(n--)head = head->next;
-        return head;
+        ListNode* fast = head;
+        ListNode* slow = head;
+        while(fast && fast->next){
+            fast = fast->next->next;
+            slow = slow->next;
+        }
+        return slow;
     }
 };
