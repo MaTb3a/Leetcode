@@ -6,14 +6,17 @@
 #         self.right = right
 class Solution:
     def evaluateTree(self, root: Optional[TreeNode]) -> bool:
-        if not root.left and not root.right:
-            return root.val != 0
-
-        l = self.evaluateTree(root.left)
-        r = self.evaluateTree(root.right)
-        if root.val == 2:
-            ans = l or r
-        else:
-            ans = l and r
-
-        return ans
+        # 0 false
+        # 1 true
+        # 2 OR
+        # 3 AND
+        def solve(root):
+            #base case
+            if root.val == 0 or root.val == 1:
+                return root.val
+            if root.val == 2:
+                return solve(root.left) or solve(root.right)
+            if root.val == 3:
+                return solve(root.left) and solve(root.right)
+            return root
+        return solve(root)
