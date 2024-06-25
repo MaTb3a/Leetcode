@@ -11,22 +11,18 @@
  */
 class Solution {
 public:
-    
+    int sum = 0;
+    void solve(TreeNode *root){
+        if(!root)
+            return;
+        solve(root->right);
+        sum+=root->val;
+        root->val = sum;
+        solve(root->left);
+    }
     TreeNode* bstToGst(TreeNode* root) {
-        int sum = 0;
-        stack<TreeNode*>stk;
-        TreeNode* node = root;
-        while(node != nullptr || stk.size() ){
-            while(node){
-                stk.push(node);
-                node = node->right;
-            }
-            node = stk.top();
-            stk.pop();
-            sum += node->val;
-            node->val = sum;
-            node = node->left;
-        }
+        solve(root);
         return root;
     }
+    
 };
