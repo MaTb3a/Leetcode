@@ -1,6 +1,6 @@
 class Solution {
 public:
-        // ab | ba
+  
     int solve(string &s,string remove,int val){
         string newS = "";
         int score = 0;
