@@ -12,26 +12,57 @@
 class Solution {
 public:
     TreeNode* createBinaryTree(vector<vector<int>>& descriptions) {
-        unordered_map<int,TreeNode*>mp;
-        unordered_map<int,bool>vis;
+       sort(descriptions.begin(),descriptions.end());
+       int parent = -1;
+       vector<pair<int,bool>>graph[100001];
+       int vis[100001]={};
+       for(auto node : descriptions){
+            graph[node[0]].push_back({node[1],node[2]});
+            vis[node[1]]++;
+       }
         for(auto node : descriptions){
-            int parent = node[0];
-            int child = node[1];
-            bool isLeft = node[2];
-            vis[child] = true;
-            if(!mp.count(parent))
-                mp[parent] = new TreeNode(parent);
-            if(!mp.count(child))
-                mp[child] = new TreeNode(child);
-            if(isLeft)
-                mp[parent]->left = mp[child];
-            else 
-                mp[parent]->right = mp[child];
+            if(!vis[node[0]]){
+                parent = node[0];
+                break;
+            }
         }
-        for(auto node : mp)
-            if(!vis.count(node.first))
-                return node.second;
-        return NULL;
+        
+       TreeNode* root = new TreeNode(parent);
+       TreeNode* trace = root;
+       queue<TreeNode*>q;
+       q.push(trace);
+       while(q.size()){
+            int sz = q.size();
+                auto cur = q.front();
+                q.pop();
+                cout<<q.size()<<endl;
+                if(graph[cur->val].size() > 0){
 
+                    if(graph[cur->val][0].second){
+                        cur->left = new TreeNode(graph[cur->val][0].first);
+                        q.push(cur->left);
+                    }
+                    else {
+
+                        cur->right = new TreeNode(graph[cur->val][0].first);
+                        q.push(cur->right);
+                    }
+                }
+                if(graph[cur->val].size() > 1) {
+
+                    if(graph[cur->val][1].second){
+
+                        cur->left = new TreeNode(graph[cur->val][1].first);
+                        q.push(cur->left);
+                    }
+                    else {
+
+                        cur->right = new TreeNode(graph[cur->val][1].first);
+                        q.push(cur->right);
+                    }
+                }
+        
+       }
+       return root;
     }
 };
