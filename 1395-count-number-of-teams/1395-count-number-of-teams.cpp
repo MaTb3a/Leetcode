@@ -1,33 +1,37 @@
 class Solution {
 public:
+    int n;
+    int dp[1001][4];
+    int solve(int idx,int sz,bool greater,vector<int>& rating){
+        if(idx ==n)
+            return 0;
+        if(sz==3)return 1;
+        
+        int &ret = dp[idx][sz];
+        if(~ret)return ret;
+        ret = 0;
+        for(int i = idx+1;i<n;i++){
+            if(greater){
+                if(rating[i] > rating[idx])
+                    ret+=solve(i,sz+1,greater,rating);
+            }
+            else {
+                if(rating[i] < rating[idx])
+                    ret+=solve(i,sz+1,greater,rating);
+            }
+        }
+        return ret;
+    }
     int numTeams(vector<int>& rating) {
-        int mx = *max_element(rating.begin(),rating.end());
-        int n = rating.size();
-        vector<int>pre1(mx+1),pre2(mx+1);
-
-        // pre processing
-        for(int j = 0 ; j < n ; j++){
-            for(int k = j+1 ; k < n ; k++){
-                if(rating[k] > rating[j])
-                    pre1[rating[j]]++;
-                if(rating[k] < rating[j])
-                    pre2[rating[j]]++;
-            }
-        }
-
-        int cnt = 0;
-        for(int i = 0 ; i < n ;i++){
-            for(int j = i+1 ; j < n ;j++){
-
-                if(rating[i] < rating[j])
-                    cnt+=pre1[rating[j]];
-                if(rating[i] > rating[j])
-                    cnt+=pre2[rating[j]];
-
-            }
-        }
-        return cnt;
-
+       n = rating.size();
+       int ans = 0;
+       memset(dp,-1,sizeof dp);
+       for(int i = 0 ; i < n ;i++)
+            ans+=solve(i,1,true,rating);
+        memset(dp,-1,sizeof dp);
+       for(int i = 0 ; i < n ;i++)
+            ans+=solve(i,1,false,rating);
+        return ans;
 
     }
 };
