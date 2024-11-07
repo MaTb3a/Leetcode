@@ -1,10 +1,16 @@
 class Solution {
 public:
     int mySqrt(int x) {
-        
-        int i = 2;
-        for(   ;1LL* i*i <= x;i++)
-            if(i*i >= x)return i;
-        return x  < 2 ? x : i-1;
+       
+        int l = 0, r = x, md ,cur=-1;
+        while(l<=r){
+            md = l+r>>1; // (l+r)/2
+            if(1LL * md*md <= x){
+                cur = md;
+                l = md+1;
+            }
+            else r = md-1;
+        }
+        return cur;
     }
 };
