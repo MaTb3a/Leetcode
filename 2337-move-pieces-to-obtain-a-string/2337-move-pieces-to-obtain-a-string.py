@@ -4,23 +4,20 @@ class Solution:
         i = j = 0
         
         while i < n or j < n:
-            while i < n and start[i] == '_':  # Skip '_' in start
+            while i < n and start[i] == '_':  
                 i += 1
-            while j < n and target[j] == '_':  # Skip '_' in target
+            while j < n and target[j] == '_':  
                 j += 1
             
-            # Both strings are fully traversed
             if i == n and j == n:
                 return True
             
-            # One string finishes early
             if i == n or j == n or start[i] != target[j]:
                 return False
             
-            # Check constraints for L and R
-            if start[i] == 'L' and i < j:  # L can only move left
+            if start[i] == 'L' and i < j:  
                 return False
-            if start[i] == 'R' and i > j:  # R can only move right
+            if start[i] == 'R' and i > j: 
                 return False
             
             i += 1
