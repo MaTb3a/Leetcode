@@ -1,26 +1,40 @@
-import heapq
+import java.util.*;
 
-class Solution:
-    def leftmostBuildingQueries(self, heights: list[int], queries: list[list[int]]) -> list[int]:
-        n = len(heights)
-        m = len(queries)
-        v = [[] for _ in range(n)]
-        ans = [-1] * m
+class Solution {
+    public int[] leftmostBuildingQueries(int[] heights, int[][] queries) {
+        int n = heights.length;
+        int m = queries.length;
+        List<List<int[]>> v = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            v.add(new ArrayList<>());
+        }
+        int[] ans = new int[m];
+        Arrays.fill(ans, -1);
 
-        for i in range(m):
-            x, y = queries[i]
-            if x > y:
-                x, y = y, x
-            if x == y or heights[x] < heights[y]:
-                ans[i] = y
-            else:
-                v[y].append((max(heights[x], heights[y]), i))
+        for (int i = 0; i < m; i++) {
+            int x = queries[i][0], y = queries[i][1];
+            if (x > y) {
+                int temp = x;
+                x = y;
+                y = temp;
+            }
+            if (x == y || heights[x] < heights[y]) {
+                ans[i] = y;
+            } else {
+                v.get(y).add(new int[] { Math.max(heights[x], heights[y]), i });
+            }
+        }
 
-        pr = []
-        for i in range(n):
-            for it in v[i]:
-                heapq.heappush(pr, it)
-            while pr and pr[0][0] < heights[i]:
-                ans[heapq.heappop(pr)[1]] = i
+        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[0] - b[0]);
+        for (int i = 0; i < n; i++) {
+            for (int[] it : v.get(i)) {
+                pq.add(it);
+            }
+            while (!pq.isEmpty() && pq.peek()[0] < heights[i]) {
+                ans[pq.poll()[1]] = i;
+            }
+        }
 
-        return ans
+        return ans;
+    }
+}
