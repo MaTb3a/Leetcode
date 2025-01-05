@@ -1,16 +1,24 @@
-class Solution:
-    def shiftingLetters(self, s: str, shifts: list[list[int]]) -> str:
-        n = len(s)
-        v = [0] * (n + 1)
+class Solution {
+    public String shiftingLetters(String s, int[][] shifts) {
+        int n = s.length();
+        int[] v = new int[n + 1];
 
-        for l, r, d in shifts:
-            v[l] += 1 if d else -1
-            if r + 1 < n:
-                v[r + 1] += -1 if d else 1
+        for (int[] shift : shifts) {
+            int l = shift[0], r = shift[1], d = shift[2];
+            v[l] += d == 1 ? 1 : -1;
+            if (r + 1 < n) {
+                v[r + 1] += d == 1 ? -1 : 1;
+            }
+        }
 
-        for i in range(n):
-            if i > 0:
-                v[i] += v[i - 1]
-            s = s[:i] + chr((ord(s[i]) - ord('a') + v[i]) % 26 + ord('a')) + s[i + 1:]
+        char[] chars = s.toCharArray();
+        for (int i = 0; i < n; i++) {
+            if (i > 0) {
+                v[i] += v[i - 1];
+            }
+            chars[i] = (char) (((chars[i] - 'a' + v[i]) % 26 + 26) % 26 + 'a');
+        }
 
-        return s
+        return new String(chars);
+    }
+}
