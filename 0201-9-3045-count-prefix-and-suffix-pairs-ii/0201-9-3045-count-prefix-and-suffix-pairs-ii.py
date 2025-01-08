@@ -1,6 +1,8 @@
+from collections import defaultdict
+
 class TrieNode:
     def __init__(self):
-        self.child = {}
+        self.child = defaultdict(TrieNode)
         self.frq = 0
 
 class Solution:
@@ -8,30 +10,26 @@ class Solution:
         self.trie = TrieNode()
 
     def insert(self, s):
-        top = self.trie
+        node = self.trie
         n = len(s)
         for i in range(n):
-            pre = s[i]
-            suf = s[n - i - 1]
-            if (pre, suf) not in top.child:
-                top.child[(pre, suf)] = TrieNode()
-            top = top.child[(pre, suf)]
-            top.frq += 1
+            pre, suf = s[i], s[n - i - 1]
+            node = node.child[(pre, suf)]
+            node.frq += 1
 
     def search(self, s):
-        top = self.trie
+        node = self.trie
         n = len(s)
         for i in range(n):
-            pre = s[i]
-            suf = s[n - i - 1]
-            if (pre, suf) not in top.child:
+            pre, suf = s[i], s[n - i - 1]
+            if (pre, suf) not in node.child:
                 return 0
-            top = top.child[(pre, suf)]
-        return top.frq
+            node = node.child[(pre, suf)]
+        return node.frq
 
     def countPrefixSuffixPairs(self, words):
-        cnt = 0
+        count = 0
         for word in reversed(words):
-            cnt += self.search(word)
+            count += self.search(word)
             self.insert(word)
-        return cnt
+        return count
