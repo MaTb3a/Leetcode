@@ -30,11 +30,9 @@ class Solution:
     def magnificentSets(self, n, edges):
         adj = [[] for _ in range(n + 1)]
         color = [-1] * (n + 1)
-
         for u, v in edges:
             adj[u].append(v)
             adj[v].append(u)
-
         ans = 0
         for i in range(1, n + 1):
             if color[i] != -1:
@@ -43,5 +41,4 @@ class Solution:
             if not self.dfs(i, 0, adj, color, v):
                 return -1
             ans += self.bfs(v, adj, n)
-
         return ans
