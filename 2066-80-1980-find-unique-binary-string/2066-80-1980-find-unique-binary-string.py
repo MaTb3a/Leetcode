@@ -1,6 +1,5 @@
+from typing import List
+
 class Solution:
     def findDifferentBinaryString(self, nums: List[str]) -> str:
-        s=""
-        for i in range(len(nums)):
-            s+=str(1-int(nums[i][i]))
-        return s
+        return "".join(str(int(nums[i][i]) ^ 1) for i in range(len(nums)))
