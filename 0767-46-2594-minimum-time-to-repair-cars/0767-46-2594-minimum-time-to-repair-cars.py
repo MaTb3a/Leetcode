@@ -4,7 +4,7 @@ class Solution:
             for i in ranks:
                 cars-= int(math.sqrt(md//i))
             return cars <= 0
-        st,ed,cur,md = 1,1e14,-1,0
+        st,ed,cur,md = 1,min(ranks)*cars*cars,-1,0
         while st<=ed:
             md = (st+ed)//2
             if ok(md,cars):
@@ -12,4 +12,4 @@ class Solution:
                 ed = md -1
             else:
                 st = md +1
-        return int(cur)
+        return (cur)
