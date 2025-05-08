@@ -1,7 +1,4 @@
 
-        
-import heapq
-
 class Solution:
     def minTimeToReach(self, moveTime):
         n = len(moveTime)
