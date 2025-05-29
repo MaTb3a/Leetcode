@@ -9,9 +9,7 @@ class Solution:
         def solve(i,grid):
             if i == n:
                 a = []
-                for x in grid:
-                    a.append(''.join(x))
-                ans.append(a)
+                ans.append([''.join(r) for r in grid])
                 return
             for j in range(0,n):
                 if col[j] == 0 and dig1[i-j+n] == 0 and dig2[i+j] == 0:
