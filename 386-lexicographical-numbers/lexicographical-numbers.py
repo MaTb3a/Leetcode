@@ -1,14 +1,14 @@
 class Solution:
     def lexicalOrder(self, n: int) -> List[int]:
         ans = []
-        def solve(x):
-            if x > n:
-                return
+        x = 1
+        while len(ans) < n:
             ans.append(x)
-            solve(x*10)
-            if x%10 < 9 :
-                solve(x+1)
+            if x * 10 <= n:
+                x*=10
+            else:
+                while x == n or x % 10 == 9:
+                    x//=10
+                x+=1
             
-        solve(1)
         return ans
-
