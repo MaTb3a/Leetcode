@@ -8,8 +8,9 @@ class Solution:
             s+=nums[i]
             s%=k
             nums[i] = s
-            if s in mp and i - mp[s] > 1:
-                return True
-            if s not in mp:
+            if s in mp:
+                if i - mp[s] > 1:
+                    return True
+            else:
                 mp[s] = i
         return False
