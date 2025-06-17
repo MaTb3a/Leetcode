@@ -11,19 +11,16 @@ class Solution:
         while top:
             cnt+=1
             top = top.next
-        idx = cnt - n 
-        if not idx:
-            return head.next
-        top = head
         
-        while top:
+        if n == cnt:
+            return head.next
+        idx = cnt - n -1
+       
+        top = head
+        while idx > 0:
             idx-=1
-            if idx == 0:
-                print(top)
-                if top.next:
-                    top.next = top.next.next
-                else:
-                    top.next = None
-            if top:
-                top = top.next
+            top = top.next
+
+        top.next = top.next.next
+        
         return head
