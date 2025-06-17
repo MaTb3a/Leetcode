@@ -12,26 +12,24 @@ class Codec:
         """
         if not root:
             return ''
-        return str(root.val) + ',' + self.serialize(root.left) + self.serialize(root.right) 
-
-    
+        return str(root.val) + "," + self.serialize(root.left) + self.serialize(root.right)
+        
 
     def add(self,root,key):
+        
         if not root:
             return TreeNode(key)
-
         if key < root.val:
             root.left = self.add(root.left,key)
-        else:
+        else :
             root.right = self.add(root.right,key)
-
         return root
     
     def deserialize(self, data: str) -> Optional[TreeNode]:
         """Decodes your encoded data to tree.
         """
         root = None
-        lst = deque(int(x) for x in data.split(',') if x)
+        lst = [int(x) for x in data.split(',') if x]
         for x in lst:
             root = self.add(root,x)
         return root
