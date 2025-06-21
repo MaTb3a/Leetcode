@@ -5,6 +5,10 @@ class Solution:
         """
         # 1,2,3,4,5,6,7
         # 5,6,7,1,2,3,4
-        n = len(nums)
-        k%=n
-        nums[:] = nums[n-k:] + nums[:n-k]
+        q = deque(nums)
+        k%=len(nums)
+        while k:
+            q.appendleft(q.pop())
+            k-=1
+        
+        nums[:] = list(q)
