@@ -3,8 +3,6 @@ class Solution:
         mp = Counter(nums)
         mx = 0
         for x in nums:
-            if mp[x] and x-1 in mp:
-                mx = max(mx,mp[x]+mp[x-1],)
             if mp[x] and x+1 in mp:
                 mx = max(mx,mp[x]+mp[x+1])
         return mx
