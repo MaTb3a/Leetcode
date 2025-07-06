@@ -1,6 +1,4 @@
 class FindSumPairs:
-    dic = {}
-    nums2 = []
 
     def __init__(self, nums1: List[int], nums2: List[int]):
         self.dic = Counter(nums2)
