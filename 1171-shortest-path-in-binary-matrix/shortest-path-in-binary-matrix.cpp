@@ -20,7 +20,7 @@
                 // loop( 8):
                     ddx
                     ddy
-                    if valid  && dist[ddx][ddy] == INF  && !grid[ddx][ddy]:
+                    if valid  && dist[ddx][ddy] >  ist[x][y]+1  && !grid[ddx][ddy]:
                         dist[ddx][ddy] > dist[x][y] + 1 
                         push(ddx, ddy)
 
@@ -37,19 +37,19 @@ public:
     int shortestPathBinaryMatrix(vector<vector<int>>& grid) {
         int n = grid.size();
         if(grid[0][0])return -1;
-        vector<vector<int>>dist(n,vector<int>(n,0x3f3f3f3f));
+        vector<vector<int>>dist(n,vector<int>(n,0x3f3f3f3f)); // M (n^2)
         dist[0][0] = 1;
 
         queue<pair<int,int>>q;
         q.push({0,0});
 
-        while(q.size()){
+        while(q.size()){ // n^2
             auto [x,y] = q.front();
             q.pop();
-            for(int i = 0 ; i < 8 ; i++){
+            for(int i = 0 ; i < 8 ; i++){ // 8
                 int ddx = dx[i] + x;
                 int ddy = dy[i] + y;
-                if(valid(ddx,ddy,n) && !grid[ddx][ddy] && dist[ddx][ddy] == 0x3f3f3f3f){
+                if(valid(ddx,ddy,n) && !grid[ddx][ddy] &&  dist[ddx][ddy] >  dist[x][y]+1){
                      dist[ddx][ddy] =  dist[x][y]+1;
                      q.push({ddx,ddy}); 
                 }
