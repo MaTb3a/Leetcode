@@ -1,29 +1,18 @@
 class Solution {
 public:
     int maximumLength(vector<int>& nums) {
-        int odd = 0, even = 0, oddEven = 0, evenOdd = 0;
-        for(int i = 0 ; i < nums.size();i++){
-            odd+=(nums[i]&1);
-            even+=!(nums[i]&1);
-            if(i){
-                oddEven+= ((nums[i-1]&1) && !(nums[i]&1));
-                evenOdd+= (!(nums[i-1]&1) && (nums[i]&1));
+        int dp[4] ={0};
+        for(int x : nums){
+            if(x&1){
+                dp[0] = max(dp[0],dp[1]+1);
+                dp[3]++;
+            }
+            else {
+                dp[1] = max(dp[1],dp[0]+1);
+                dp[2]++;
             }
         }
-        return max({odd,even,oddEven*2,evenOdd*2,oddEven+evenOdd+1});
+        return *max_element(dp,dp+4);
+    
     }
-    // 1,5,9,4,2 
-    // 1 1 1 0 0
-
-    //1,3
-    // 1 1
-
-    // 1,2,1,1,2,1,2
-    // 1 0 1 1 0 1 0
-
-    // 1,2,3,4
-    // 1 0 1 0
-
-    // odd, even , oddeven, even odd
-
 };
