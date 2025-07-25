@@ -1,14 +1,16 @@
 class Solution {
 public:
     int maxSum(vector<int>& nums) {
-        set<int>st(nums.begin(),nums.end());
-        int mx = *max_element(nums.begin(),nums.end());
-        while(st.size() && *st.begin() < 0)st.erase(st.begin());
-        if(st.empty())return mx;
-        int sum = 0;
-        for(int x : st)
-            sum+=(x>0 ? x : 0);
-
-        return sum;
+        int mx = *max_element(nums.begin(),nums.end()),sum =0;
+        bool ok = false;
+        vector<bool>vis(101);
+        for(int x : nums){
+            if(x > 0 && !vis[x]){
+                vis[x]=1;
+                ok = true;
+                sum+=x;
+            }
+        }
+        return ok ? sum : mx;
     }
 };
