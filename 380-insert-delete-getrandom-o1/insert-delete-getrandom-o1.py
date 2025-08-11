@@ -17,11 +17,11 @@ class RandomizedSet:
     def remove(self, val: int) -> bool:
         if val in self.idxs:
             i = self.idxs[val]
-            j = len(self.lsts) -1
-            updatedVal = self.lsts[j]
-            self.lsts[i],self.lsts[j] = self.lsts[j],self.lsts[i]
-            self.lsts.pop(-1)
-            self.idxs[updatedVal] = i
+            
+            v = self.lsts[-1]
+            self.lsts[i] = self.lsts[-1]
+            self.lsts.pop()
+            self.idxs[v] = i
             del self.idxs[val]
             return True
        
