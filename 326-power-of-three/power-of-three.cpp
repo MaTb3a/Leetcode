@@ -5,7 +5,6 @@ public:
         int st = 0,ed = 20,cur=-1,md;
         while(st<=ed){
             md = (st+ed)/2;
-            cout<<md<<"\n";
             if(pow(3,md) <= n){
                 cur = md;
                 st = md+1;
