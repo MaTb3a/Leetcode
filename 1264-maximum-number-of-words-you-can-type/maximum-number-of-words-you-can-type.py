@@ -1,11 +1,3 @@
 class Solution:
     def canBeTypedWords(self, text: str, brokenLetters: str) -> int:
-        ans = 0
-        for s in text.split(' '):
-            count = 1
-            for c in brokenLetters:
-                if c in s:
-                    count = 0
-                    break
-            ans+=count
-        return ans
+        return sum(all(c not in set(brokenLetters) for c in s) for s in text.split())
