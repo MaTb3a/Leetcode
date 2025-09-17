@@ -1,8 +1,8 @@
 class FoodRatings {
 public:
-    map<string,set<pair<int,string>>>mp;
+    unordered_map<string,set<pair<int,string>>>mp;
 
-    map<string,int>currentRate;
+    unordered_map<string,int>currentRate;
     FoodRatings(vector<string>& foods, vector<string>& cuisines, vector<int>& ratings) {
         for(int i = 0 ; i < foods.size();i++){
             mp[cuisines[i]].insert({-ratings[i],foods[i]});
