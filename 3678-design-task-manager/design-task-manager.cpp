@@ -1,21 +1,21 @@
 class TaskManager {
 public:
     set<pair<int,int>>st;
-    map<int,int>mp;
-    map<int,int>user;
+    unordered_map<int,int>mp;
+    unordered_map<int,int>users;
 
     TaskManager(vector<vector<int>>& tasks) {
         for(auto it : tasks){
             mp[it[1]] = it[2];
             st.insert({-it[2],-it[1]});
-            user[it[1]] = it[0];
+            users[it[1]] = it[0];
         }
     }
     
-    void add(int userId, int taskId, int priority) {
+    void add(int usersId, int taskId, int priority) {
         mp[taskId] = priority;
         st.insert({-priority,-taskId});
-        user[taskId] = userId;
+        users[taskId] = usersId;
         
     }   
     
@@ -30,7 +30,7 @@ public:
     void rmv(int taskId) {
         st.erase({-mp[taskId],-taskId});
         mp.erase(taskId);
-        user.erase(taskId);
+        users.erase(taskId);
 
         
     }
@@ -39,7 +39,7 @@ public:
 
          int uid = -1 ;
          if(st.size()){
-            uid =  user[-(*st.begin()).second];
+            uid =  users[-(*st.begin()).second];
             st.erase(st.begin());
          }
          return uid;
