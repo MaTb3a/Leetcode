@@ -1,5 +1,4 @@
 class Spreadsheet:
-    cells = {}
     def __init__(self, rows: int):
         self.cells = defaultdict(int)
 
