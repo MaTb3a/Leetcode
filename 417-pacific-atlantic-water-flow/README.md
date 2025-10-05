@@ -1,15 +1,16 @@
-<h2><a href="https://leetcode.com/problems/pacific-atlantic-water-flow/">417. Pacific Atlantic Water Flow</a></h2><h3>Medium</h3><hr><div><p>There is an <code>m x n</code> rectangular island that borders both the <strong>Pacific Ocean</strong> and <strong>Atlantic Ocean</strong>. The <strong>Pacific Ocean</strong> touches the island's left and top edges, and the <strong>Atlantic Ocean</strong> touches the island's right and bottom edges.</p>
+<h2><a href="https://leetcode.com/problems/pacific-atlantic-water-flow">Pacific Atlantic Water Flow</a></h2> <img src='https://img.shields.io/badge/Difficulty-Medium-orange' alt='Difficulty: Medium' /><hr><p>There is an <code>m x n</code> rectangular island that borders both the <strong>Pacific Ocean</strong> and <strong>Atlantic Ocean</strong>. The <strong>Pacific Ocean</strong> touches the island&#39;s left and top edges, and the <strong>Atlantic Ocean</strong> touches the island&#39;s right and bottom edges.</p>
 
 <p>The island is partitioned into a grid of square cells. You are given an <code>m x n</code> integer matrix <code>heights</code> where <code>heights[r][c]</code> represents the <strong>height above sea level</strong> of the cell at coordinate <code>(r, c)</code>.</p>
 
-<p>The island receives a lot of rain, and the rain water can flow to neighboring cells directly north, south, east, and west if the neighboring cell's height is <strong>less than or equal to</strong> the current cell's height. Water can flow from any cell adjacent to an ocean into the ocean.</p>
+<p>The island receives a lot of rain, and the rain water can flow to neighboring cells directly north, south, east, and west if the neighboring cell&#39;s height is <strong>less than or equal to</strong> the current cell&#39;s height. Water can flow from any cell adjacent to an ocean into the ocean.</p>
 
 <p>Return <em>a <strong>2D list</strong> of grid coordinates </em><code>result</code><em> where </em><code>result[i] = [r<sub>i</sub>, c<sub>i</sub>]</code><em> denotes that rain water can flow from cell </em><code>(r<sub>i</sub>, c<sub>i</sub>)</code><em> to <strong>both</strong> the Pacific and Atlantic oceans</em>.</p>
 
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
-<img alt="" src="https://assets.leetcode.com/uploads/2021/06/08/waterflow-grid.jpg" style="width: 400px; height: 400px;">
-<pre><strong>Input:</strong> heights = [[1,2,2,3,5],[3,2,3,4,4],[2,4,5,3,1],[6,7,1,4,5],[5,1,1,2,4]]
+<img alt="" src="https://assets.leetcode.com/uploads/2021/06/08/waterflow-grid.jpg" style="width: 400px; height: 400px;" />
+<pre>
+<strong>Input:</strong> heights = [[1,2,2,3,5],[3,2,3,4,4],[2,4,5,3,1],[6,7,1,4,5],[5,1,1,2,4]]
 <strong>Output:</strong> [[0,4],[1,3],[1,4],[2,2],[3,0],[3,1],[4,0]]
 <strong>Explanation:</strong> The following cells can flow to the Pacific and Atlantic oceans, as shown below:
 [0,4]: [0,4] -&gt; Pacific Ocean 
@@ -31,7 +32,8 @@ Note that there are other possible paths for these cells to flow to the Pacific 
 
 <p><strong class="example">Example 2:</strong></p>
 
-<pre><strong>Input:</strong> heights = [[1]]
+<pre>
+<strong>Input:</strong> heights = [[1]]
 <strong>Output:</strong> [[0,0]]
 <strong>Explanation:</strong> The water can flow from the only cell to the Pacific and Atlantic oceans.
 </pre>
@@ -45,4 +47,3 @@ Note that there are other possible paths for these cells to flow to the Pacific 
 	<li><code>1 &lt;= m, n &lt;= 200</code></li>
 	<li><code>0 &lt;= heights[r][c] &lt;= 10<sup>5</sup></code></li>
 </ul>
-</div>
