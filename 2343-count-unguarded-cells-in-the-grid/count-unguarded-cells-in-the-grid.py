@@ -39,7 +39,6 @@ class Solution:
         while len(q):
             x,y = q.pop()
             solve(x,y)
-        print(vis)
         cnt = sum(c == 0 for x in vis for c in x)
         return cnt
 
