@@ -1,23 +1,17 @@
 class Solution {
 public:
-    unordered_map<char,int>vis;
-    bool valid(){
-        for(auto it : vis)if(it.second>1)return false;
-        return true;
-    }
+   
     int lengthOfLongestSubstring(string s) {
-        
-        int j = 0,ans = 0;
-        for(int i = 0 ;i < s.size();i++){
-            vis[s[i]]++;
-            while(!valid()){
-                vis[s[j]]--;
-                j++;
+        unordered_map<char,bool>mp;
+        int j = 0, n = s.size(),ans = 0;
+        for(int i = 0 ; i < s.size();i++){
+            while(j < n && mp[s[j]] == false){
+                mp[s[j]]  = true;
+                j+=1;
+                ans=max(ans,j-i);
             }
-            ans=max(ans,i-j+1);
+            mp[s[i]] = false;
         }
-
-        return max(ans,(int)s.size()-j);
-
+        return ans;
     }
 };
