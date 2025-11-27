@@ -1,8 +1,8 @@
 class LRUCache {
 public:
     set<pair<int,int>>st;
-    map<int,int>cache;
-    map<int,int>frq;
+    unordered_map<int,int>cache;
+    unordered_map<int,int>frq;
     int sz,time = 1;
     LRUCache(int capacity) {
         sz = capacity;
