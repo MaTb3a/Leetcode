@@ -1,38 +1,40 @@
 class LRUCache {
 public:
-    set<pair<int,int>>st;
-    unordered_map<int,int>cache;
-    unordered_map<int,int>frq;
-    int sz,time = 1;
+    deque<int>dq; // flag -1 means deleted;
+    unordered_map<int,int>cache,mp;
+    int sz,start = 0;
     LRUCache(int capacity) {
         sz = capacity;
     }
     
     int get(int key) {
         if(cache.find(key)== cache.end())return -1;
-        auto it = st.find({frq[key],key});
-        st.erase(it);
-        frq[key] = time;
-        st.insert({time++,key});
+        dq[mp[key]] = -1;
+        mp[key] = dq.size();
+        dq.push_back(key);
         return cache[key];
     }
     
     void put(int key, int value) {
+    
+        while(start < dq.size() && dq[start] == -1)start++;
+
         if(cache.find(key)!= cache.end()){
+            dq[mp[key]] = -1;
             cache[key] = value;
-            st.erase({frq[key],key});
-            frq[key] = time;
-            st.insert({time++,key});
+            mp[key] = dq.size();
+            dq.push_back(key);
             return;
         }
         if(cache.size() == sz){
-            cache.erase(st.begin()->second);
-            frq.erase(st.begin()->second);
-            st.erase(st.begin());
+            cache.erase(dq[start]);
+            mp.erase(dq[start]);
+            start++;
         }
-        frq[key] = time;
-        st.insert({time++,key});
-        cache[key] = value;
+       
+       mp[key] = dq.size();
+       dq.push_back(key);
+       cache[key] = value;
     }
 };
 
