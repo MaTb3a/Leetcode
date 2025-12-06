@@ -1,13 +1,13 @@
 class Solution:
     def isValid(self, s: str) -> bool:
         stk = []
-        mp = {")" : "(" , "]":"[" , "}":"{"}
         for x in s:
-            if x == '(' or x== '{' or x == '[':
+            if x == '(' or x == '{' or x == '[': # open
                 stk.append(x)
-            else:
-                if not stk or stk[-1] != mp[x]:
+            else: # close
+                if not stk or (x == ')' and stk[-1] != '(') or (x == ']' and stk[-1] != '[') or (x == '}' and stk[-1] != '{'):
                     return False
-                stk.pop(-1)
+                stk.pop()
         return not stk
-                
+              
+
