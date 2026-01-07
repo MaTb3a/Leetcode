@@ -6,31 +6,19 @@
 #         self.right = right
 class Solution:
     total_sum = 0
+    ans = 0
     def dfs(self,root):
             if not root:
-                return 
-            self.total_sum+=root.val
-            if root.left:
-                self.dfs(root.left)
-                root.val+=root.left.val
-            if root.right:
-                self.dfs(root.right)
-                root.val+=root.right.val
-    def solve(self,root):
-        if not root:
-            return 0
-        ret = 0
-        ret = max(ret,(self.total_sum-root.val)*root.val)
-        if root.left:
-            ret = max(ret,self.solve(root.left))
-        if root.right:
-            ret = max(ret,self.solve(root.right))
-        return ret
+                return 0
+            subSum = root.val + self.dfs(root.left) + self.dfs(root.right)
+            self.ans = max(self.ans,(self.total_sum - subSum) * subSum)
+            return subSum
+  
     def maxProduct(self, root: Optional[TreeNode]) -> int:
         
         
-            
+        self.total_sum = self.dfs(root)
         self.dfs(root)
-        return self.solve(root)%1000000007
+        return self.ans%1000000007
         
             
