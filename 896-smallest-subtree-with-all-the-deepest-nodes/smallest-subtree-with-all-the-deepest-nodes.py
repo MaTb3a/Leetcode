@@ -9,7 +9,6 @@ class Solution:
         parent = {}
         level = [root]
         q = deque([root])
-        parent[root] = root
         while q:
             sz = len(q)
             last = []
@@ -26,13 +25,14 @@ class Solution:
           
             if len(last):
                 level = last[::]
-    
-        while len(set(level)) != 1:
-            for i in range(len(level)):
-                level[i] = parent[level[i]]
+
+        level = set(level)
+        while len(level) > 1:
+            level = {parent[node] for node in level}
+       
                
         
-        return level[0]
+        return level.pop()
 
 
             
