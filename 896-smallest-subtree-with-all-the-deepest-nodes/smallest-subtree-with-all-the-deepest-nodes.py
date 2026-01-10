@@ -14,14 +14,13 @@ class Solution:
             last = []
             for _ in range(sz):
                 node = q.popleft()
+                last.append(node)
                 if node.left:
                     q.append(node.left)
                     parent[node.left] = node
-                    last.append(node.left)
                 if node.right:
                     q.append(node.right)
                     parent[node.right] = node
-                    last.append(node.right)
           
             if len(last):
                 level = last[::]
