@@ -9,13 +9,20 @@ class Solution:
         self.v = []
         def solve(root):
             if not root:
-                return
+                return 
             self.v.append(root.val)
-            solve(root.left)
             solve(root.right)
+            solve(root.left)
+
         solve(root)
         self.v.sort()
-        ans = 1e9
+        ans = float("inf")
         for i in range(1,len(self.v)):
             ans = min(ans,self.v[i] - self.v[i-1])
         return ans
+
+
+        
+
+
+
