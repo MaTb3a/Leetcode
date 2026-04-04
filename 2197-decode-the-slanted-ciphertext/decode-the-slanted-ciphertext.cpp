@@ -1,19 +1,13 @@
 class Solution {
 public:
     string decodeCiphertext(string encodedText, int rows) {
-        int m = (encodedText.size())/rows,k=0;
-        vector<string>v(rows);
-        for(int i = 0 ; i < rows ;i++)
-            for(int j = 0 ; j < m;j++)
-                if(k < encodedText.size())
-                    v[i].push_back(encodedText[k++]);
-        
-        string decodedText = "";
+        int m = encodedText.size()/rows;       
+        string s = "";
         for(int j = 0 ; j < m;j++){
             int i = 0,k = j;
-            while(i < rows && k < m)decodedText+=v[i++][k++];
+            while(i < rows && k < m)s+=encodedText[m*i+++k++];
         }
-        while(decodedText.size() && decodedText.back() == ' ')decodedText.pop_back();
-        return decodedText;
+        while(s.size() && s.back() == ' ')s.pop_back();
+        return s;
     }
 };
