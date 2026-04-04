@@ -6,7 +6,7 @@ public:
         for(int i = 0 ; i < rows ;i++)
             for(int j = 0 ; j < m;j++)
                 if(k < encodedText.size())
-                    v[i]+=encodedText[k++];
+                    v[i].push_back(encodedText[k++]);
         
         string decodedText = "";
         for(int j = 0 ; j < m;j++){
