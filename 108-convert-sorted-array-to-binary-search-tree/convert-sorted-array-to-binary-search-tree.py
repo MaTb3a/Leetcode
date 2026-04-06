@@ -10,10 +10,7 @@ class Solution:
             if l > r:
                 return None
             md = (l+r)//2
-            node = TreeNode(nums[md])
             L = solve(l,md-1)
             R = solve(md+1,r)
-            node.left = L
-            node.right = R
-            return node
+            return TreeNode(nums[md],L,R)
         return solve(0,len(nums)-1)
