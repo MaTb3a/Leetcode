@@ -1,7 +1,13 @@
 class Solution:
     def searchInsert(self, nums: List[int], target: int) -> int:
-      
-        for i in range(0,len(nums)):
-            if nums[i] >= target:
-                return i
-        return len(nums)
+        l,r = 0,len(nums)-1
+        while l <= r:
+            md = (l+r)//2
+            if nums[md] == target:
+                return md
+            if nums[md] < target:
+                l = md+1
+            else:
+                r = md -1
+        
+        return l
