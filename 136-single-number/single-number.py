@@ -1,8 +1,16 @@
 class Solution:
     def singleNumber(self, nums: List[int]) -> int:
-        # sort 
-        nums.sort()
-        for i in range(1,len(nums),2):
-            if nums[i] != nums[i-1]:
-                return nums[i-1]
-        return nums[-1]
+        # hash table
+
+        mp = {}
+
+        for x in nums:
+            if x in mp:
+                mp[x]+=1
+            else:
+                mp[x] = 1
+        
+        for key,val in mp.items():
+            if val == 1:
+                return key
+        return -1
