@@ -1,15 +1,15 @@
 class Solution {
 public:
     vector<int>dp;
-    void solve(int i,int d,vector<int>& arr){
+    void solve(int i,int d,vector<int>& arr,int n){
         if(~dp[i])return;
         dp[i] = 1;
         for(int j = i -1 ; j >=0 && i - j <= d && arr[i] > arr[j] ; j--){
-            solve(j,d,arr);
+            solve(j,d,arr,n);
             dp[i] = max(dp[i],dp[j]+1);
         }
-        for(int j = i+1 ; j < arr.size() && j - i <=d && arr[i] > arr[j];j++){
-            solve(j,d,arr);
+        for(int j = i+1 ; j < n && j - i <=d && arr[i] > arr[j];j++){
+            solve(j,d,arr,n);
             dp[i] = max(dp[i],dp[j]+1);
         }
     }
@@ -17,7 +17,7 @@ public:
         int n = arr.size();
         dp = vector<int>(n,-1);
         for(int i = 0 ;  i< n ;i++)
-            solve(i,d,arr);
+            solve(i,d,arr,n);
         return *max_element(dp.begin(),dp.end());
         
     }
