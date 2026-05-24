@@ -1,12 +1,11 @@
 class Solution:
     def mySqrt(self, x: int) -> int:
-        if x < 2 :
-            return x
-        ans = 0
-        for i in range(1,x):
-            if i*i <= x:
-                ans = i
+        l,r,ans = 0,x,-1
+        while l <= r:
+            md = (l+r)//2
+            if md * md <= x:
+                ans = md
+                l = md+1
             else:
-                break
+                r = md -1
         return ans
-            
