@@ -7,6 +7,6 @@ class Solution:
         
         if i != -1:
             digits[i]+=1
-        else:
-            digits.insert(0,1)
-        return digits
+            return digits 
+
+        return [1] + digits
