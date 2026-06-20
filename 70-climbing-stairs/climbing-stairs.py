@@ -1,11 +1,6 @@
 class Solution:
+    @cache
     def climbStairs(self, n: int) -> int:
-        if n < 3:
-            return n
-        step1,step2 = 1,2
-        ans = 0
-        for i in range(3,n+1):
-            ans = step1+step2
-            step1 = step2
-            step2 = ans
-        return ans
+        if n < 2:
+            return 1
+        return self.climbStairs(n-1) + self.climbStairs(n-2)
