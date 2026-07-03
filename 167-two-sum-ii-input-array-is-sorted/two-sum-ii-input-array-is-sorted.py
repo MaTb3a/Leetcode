@@ -1,6 +1,6 @@
 class Solution:
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
-        for i in range(len(numbers)):
-            idx = bisect.bisect_left(numbers,target - numbers[i],lo = i+1)
+        for i in range(len(numbers)-1,-1,-1):
+            idx = bisect.bisect_left(numbers,target - numbers[i])
             if idx != len(numbers) and numbers[idx] + numbers[i] == target:
-                return [i+1,idx+1]
+                return [idx+1,i+1]
