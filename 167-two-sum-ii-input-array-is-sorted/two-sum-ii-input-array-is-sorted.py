@@ -1,11 +1,9 @@
 class Solution:
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
-        vis = []
-        vis = [-1 for i in range(3001)]
-        
+        mp = {}
         for i in range(0,len(numbers)):
-            if vis[target-numbers[i]+1000] != -1:
-                return [vis[target-numbers[i]+1000]+1,i+1]
-            vis[numbers[i]+1000]=i
+            if target-numbers[i] in mp:
+                return [mp[target-numbers[i]]+1,i+1]
+            mp[numbers[i]]=i
         
         
