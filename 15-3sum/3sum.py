@@ -8,8 +8,7 @@ class Solution:
             k = n-1
             while j < k:
                 if nums[i] + nums[j] + nums[k] == 0:
-                    tup = tuple([nums[i],nums[j],nums[k]])
-                    st.add(tup)
+                    st.add((nums[i],nums[j],nums[k]))
                     j+=1
                 elif nums[i] + nums[j] + nums[k] < 0:
                     j+=1
