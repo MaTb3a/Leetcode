@@ -17,7 +17,6 @@ class Solution:
 
         while l <= r:
             md = (l+r)//2
-            print(md,check(md))
             if check(md) == True:
                 r = md -1
                 ans = md
