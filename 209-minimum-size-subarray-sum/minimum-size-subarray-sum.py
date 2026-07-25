@@ -1,12 +1,29 @@
 class Solution:
     def minSubArrayLen(self, target: int, nums: List[int]) -> int:
-        i,j,sm,n = 0,0,0,1e9
+        
+        for i in range(1,len(nums)):
+            nums[i]+=nums[i-1]
+        
+        l,r,ans = 1,len(nums),0
 
-        for j in range(len(nums)):
-            sm+=nums[j]
-            while i <= j and sm >= target:
-                n = min(n,j-i+1)
-                sm -= nums[i]
-                i+=1
-    
-        return 0 if n == 1e9 else n
+        def check(md):
+            if nums[md-1] >= target:
+                return True
+            for i in range(md,len(nums)):
+                if nums[i] - nums[i-md] >= target:
+                    return True
+            return False
+            
+
+        while l <= r:
+            md = (l+r)//2
+            print(md,check(md))
+            if check(md) == True:
+                r = md -1
+                ans = md
+            else :
+                l = md +1
+            
+        return 0 if ans == 1e9 else ans
+
+
