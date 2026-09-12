@@ -7,8 +7,16 @@ class Solution:
         dy = [1,-1,0,0,-1,1,-1,1]
 
         n,m = len(board),len(board[0])
+        # 0 1 2 3
 
-        newBoard = [[0 for j in range(m)] for i in range(n)]
+        # 0 -> 0 -> 0 
+        # 0 -> 1 -> 1
+
+        # 1 -> 0 -> 2
+        # 1 -> 1 -> 3
+        # 00000000
+        # 00000001 >> 1
+        # 00000010
 
         def valid(x,y):
             return x >=0 and y >= 0 and x < n and y < m
@@ -20,19 +28,19 @@ class Solution:
                     ddx = dx[k] + i
                     ddy = dy[k] + j
                     if valid(ddx,ddy):
-                        cnt+=board[ddx][ddy] == 1
+                        cnt+=board[ddx][ddy]&1
                 
                 if board[i][j] == 0:
-                    newBoard[i][j] = cnt == 3
+                    if cnt == 3:
+                        board[i][j] |= 2 
                 else:
-                    newBoard[i][j] = cnt == 2 or cnt == 3
+                    if cnt == 2 or cnt == 3:
+                        board[i][j] |= 2
         
         for i in range(n):
             for j in range(m):
-                if newBoard[i][j]:
-                    board[i][j] = 1
-                else:
-                    board[i][j] = 0
+                board[i][j] >>=1
+        
         
 
 
